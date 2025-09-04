@@ -1,0 +1,20 @@
+{
+  "music_disc.hachimi_legacy": {
+    "category" : "record",
+    "sounds": [
+      {
+        "name": "hachimimagic:music_disc/hachimilegacy",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.test": {
+    "category" : "record",
+    "sounds": [
+      {
+        "name": "hachimimagic:music_disc/testsound",
+        "stream": true
+      }
+    ]
+  }
+}
