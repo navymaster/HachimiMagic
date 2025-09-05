@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import navy_master.hachimi.magic.registry.ModCreativeTabs;
 import navy_master.hachimi.magic.registry.ModDisc;
 import navy_master.hachimi.magic.registry.ModItems;
+import navy_master.hachimi.magic.registry.ModMenuType;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -17,18 +18,15 @@ import org.slf4j.Logger;
 public class HachimiMagic {
     public static final String MODID = "hachimimagic";
     private static final Logger LOGGER = LogUtils.getLogger();
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
-
 
     public HachimiMagic(){
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        // Register the Deferred Register to the mod event bus so blocks get registered
-        BLOCKS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         ModDisc.register(modEventBus);
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
+        ModMenuType.MENUS.register(modEventBus);
     }
 }

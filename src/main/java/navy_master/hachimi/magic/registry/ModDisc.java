@@ -1,5 +1,6 @@
 package navy_master.hachimi.magic.registry;
-// 在 ModSoundEvents.java 文件中
+
+import navy_master.hachimi.magic.HachimiMagic;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -9,7 +10,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModDisc {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
-            DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, "hachimimagic");
+            DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, HachimiMagic.MODID);
 
     public static final RegistryObject<SoundEvent> DISC_SOUND_Hachimi_Legacy =
             SOUND_EVENTS.register("music_disc.hachimi_legacy",
