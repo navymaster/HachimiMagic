@@ -126,6 +126,8 @@ repositories {
     
     // 可选：添加其他国内镜像作为备用
     maven { url 'https://mirrors.tuna.tsinghua.edu.cn/maven-central/' }
+    // 帕秋莉手册所在镜像
+    maven { url 'https://maven.blamejared.com' }
 }
 
 dependencies {
@@ -146,7 +148,9 @@ dependencies {
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"
     // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")
-
+// 使用帕秋莉手册84.1
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84.1-FORGE:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84.1-FORGE")
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html

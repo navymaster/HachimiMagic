@@ -1,0 +1,16 @@
+{
+  "name": "获取哈气元素",
+  "icon": "hachimimagic:ha_level_1",
+  "category": "hachimimagic:element",
+  "read_by_default": false,
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "低等哈气元素",
+      "item": "hachimimagic:ha_level_1",
+      "scale": 1.2,
+      "text": "哈气即是恶意，杀死任何类型的敌人都可能掉落低等哈气元素"
+    }
+  ]
+}

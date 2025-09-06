@@ -1,0 +1,16 @@
+{
+  "name": "获取曼波元素",
+  "icon": "hachimimagic:manbo_level_1",
+  "category": "hachimimagic:element",
+  "read_by_default": false,
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "低等曼波元素",
+      "item": "hachimimagic:manbo_level_1",
+      "scale": 1.2,
+      "text": "事实上，曼波就是翻车鱼，所以，钓鱼去吧"
+    }
+  ]
+}

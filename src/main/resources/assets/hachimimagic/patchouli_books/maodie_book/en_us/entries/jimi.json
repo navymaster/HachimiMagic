@@ -1,0 +1,16 @@
+{
+  "name": "获取基米元素",
+  "icon": "hachimimagic:jimi_level_1",
+  "category": "hachimimagic:element",
+  "read_by_default": false,
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "低等基米元素",
+      "item": "hachimimagic:jimi_level_1",
+      "scale": 1.2,
+      "text": "友善便是基米，喂食动物可以获得低等基米元素"
+    }
+  ]
+}

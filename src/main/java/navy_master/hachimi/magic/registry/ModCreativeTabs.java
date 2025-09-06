@@ -24,8 +24,6 @@ public class ModCreativeTabs {
                         }
                     })
                     .build());
-
-    // 4. 将此 DeferredRegister 注册到 Mod 事件总线的方法
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);
     }

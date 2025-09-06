@@ -3,5 +3,8 @@
   "item.hachimimagic.hachimi_legacy_music_disc": "音乐唱片",
   "item.hachimimagic.hachimi_legacy_music_disc.desc": "哈基米 - 传奇原版音乐",
   "item.hachimimagic.walkman": "哈基米随身听",
-  "item.hachimimagic.ha_level_1": "怨恨之魂"
+  "item.hachimimagic.ha_level_1": "怨恨之魂",
+  "hachimimagic.book.name": "耄耋之书",
+  "hachimimagic.landing_text": "欢迎来到哈基米的世界，我们将使用4种不同的魔法元素，完成你的哈基米魔法",
+  "item.hachimimagic.manbo_level_1": "翻车鱼"
 }

@@ -1,0 +1,13 @@
+{
+  "type": "patchouli:shaped_book_recipe",
+  "pattern": [
+    "# #",
+    " X ",
+    "# #"
+  ],
+  "key": {
+    "#": { "item": "minecraft:honey_block" },
+    "X": { "item": "minecraft:book" }
+  },
+  "book": "hachimimagic:maodie_book"
+}

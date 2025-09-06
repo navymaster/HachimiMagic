@@ -1,0 +1,16 @@
+{
+  "name": "获取音乐元素",
+  "icon": "hachimimagic:hachimi_legacy_music_disc",
+  "category": "hachimimagic:element",
+  "read_by_default": false,
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "spotlight",
+      "title": "音乐元素",
+      "item": "hachimimagic:hachimi_legacy_music_disc",
+      "scale": 1.2,
+      "text": "音乐就是能量，查看第二章 结构与设施 中的音乐能量收集器，播放唱片以获得音乐元素"
+    }
+  ]
+}
