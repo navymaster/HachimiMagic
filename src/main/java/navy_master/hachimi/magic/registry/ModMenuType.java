@@ -6,6 +6,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.extensions.IForgeMenuType;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -20,4 +21,7 @@ public class ModMenuType {
                 ItemStack stack = inv.player.getItemInHand(hand);
                 return new WalkmanMenu(windowId, inv, hand, stack);
             }));
+    public static void register(IEventBus eventBus) {
+        MENUS.register(eventBus);
+    }
 }

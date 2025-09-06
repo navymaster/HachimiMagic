@@ -1,0 +1,11 @@
+{
+  "type": "hachimimagic:fish_loot",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:gameplay/fishing"
+    }
+  ],
+  "item": "hachimimagic:manbo_level_1",
+  "probability": 5
+}

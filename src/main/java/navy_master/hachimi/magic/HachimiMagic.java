@@ -1,10 +1,7 @@
 package navy_master.hachimi.magic;
 
 import com.mojang.logging.LogUtils;
-import navy_master.hachimi.magic.registry.ModCreativeTabs;
-import navy_master.hachimi.magic.registry.ModDisc;
-import navy_master.hachimi.magic.registry.ModItems;
-import navy_master.hachimi.magic.registry.ModMenuType;
+import navy_master.hachimi.magic.registry.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -17,7 +14,6 @@ import org.slf4j.Logger;
 @Mod(HachimiMagic.MODID)
 public class HachimiMagic {
     public static final String MODID = "hachimimagic";
-    private static final Logger LOGGER = LogUtils.getLogger();
 
     public HachimiMagic(){
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -27,6 +23,7 @@ public class HachimiMagic {
         ModDisc.register(modEventBus);
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
-        ModMenuType.MENUS.register(modEventBus);
+        ModMenuType.register(modEventBus);
+        LootModifier.register(modEventBus);
     }
 }
