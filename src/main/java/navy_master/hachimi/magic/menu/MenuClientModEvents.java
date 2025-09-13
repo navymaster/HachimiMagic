@@ -23,6 +23,10 @@ public class MenuClientModEvents {
             MenuScreens.register(ModMenuType.MIXING_TANK.get(), MixingTankScreen::new);
             // 注册物品属性
             WalkmanBase.registerProperties();
+
+            // 注册祭坛的界面
+            MenuScreens.register(ModMenuType.MUSIC_ALTAR.get(), MusicMultiblockScreen::new);
+
         });
     }
 }

@@ -1,5 +1,7 @@
 package navy_master.hachimi.magic.registry;
 
+import navy_master.hachimi.magic.blockentity.MusicAltarBlockEntity;
+import navy_master.hachimi.magic.menu.MusicAltarMenu;
 import navy_master.hachimi.magic.HachimiMagic;
 import navy_master.hachimi.magic.menu.WalkmanMenu;
 import navy_master.hachimi.magic.menu.MixingTankMenu;
@@ -18,6 +20,20 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModMenuType {
     public static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, HachimiMagic.MODID);
+
+    public static final RegistryObject<MenuType<MusicAltarMenu>> MUSIC_ALTAR =
+            MENUS.register("music_multiblock", () ->
+                    IForgeMenuType.create((containerId, playerInventory, buf) -> {
+                        BlockPos pos = buf.readBlockPos();
+                        Level level = playerInventory.player.level();
+                        BlockEntity be = level.getBlockEntity(pos);
+
+                        if (be instanceof MusicAltarBlockEntity blockEntity) {
+                            return new MusicAltarMenu(containerId, playerInventory, blockEntity);
+                        }
+
+                        return new MusicAltarMenu(containerId, playerInventory, null);
+                    }));
 
     public static final RegistryObject<MenuType<WalkmanMenu>> WALKMAN_MENU = MENUS.register("walkman_menu",
             () -> IForgeMenuType.create((windowId, inv, data) -> {
