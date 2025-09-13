@@ -2,14 +2,10 @@ package navy_master.hachimi.magic;
 
 import com.mojang.logging.LogUtils;
 import navy_master.hachimi.magic.registry.*;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import org.slf4j.Logger;
 
 @Mod(HachimiMagic.MODID)
 public class HachimiMagic {
@@ -24,6 +20,10 @@ public class HachimiMagic {
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
         ModMenuType.register(modEventBus);
+        ModBlocks.register(modEventBus);
+        ModFluidTypes.register(modEventBus);
+        ModFluids.register(modEventBus);
+
         LootModifier.register(modEventBus);
     }
 }

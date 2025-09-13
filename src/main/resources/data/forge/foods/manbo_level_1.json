@@ -1,0 +1,15 @@
+{
+  "hunger": 2,
+  "saturation": 0.4,
+  "meat": true,
+  "fast": false,
+  "alwaysEdible": false,
+  "effects": [
+    {
+      "effect": "minecraft:confusion",
+      "duration": 200,
+      "amplifier": 0,
+      "probability": 0.1
+    }
+  ]
+}

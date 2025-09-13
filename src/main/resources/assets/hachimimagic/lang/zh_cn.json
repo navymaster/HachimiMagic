@@ -6,5 +6,10 @@
   "item.hachimimagic.ha_level_1": "怨恨之魂",
   "hachimimagic.book.name": "耄耋之书",
   "hachimimagic.landing_text": "欢迎来到哈基米的世界，我们将使用4种不同的魔法元素，完成你的哈基米魔法",
-  "item.hachimimagic.manbo_level_1": "翻车鱼"
+  "item.hachimimagic.manbo_level_1": "翻车鱼",
+  "item.hachimimagic.ha_emulsion_bucket":"哈元素桶",
+  "item.hachimimagic.jimi_emulsion_bucket":"基米元素桶",
+  "item.hachimimagic.manbo_emulsion_bucket":"曼波元素桶",
+  "item.hachimimagic.music_emulsion_bucket":"乐元素桶",
+  "block.hachimimagic.mixing_tank": "乳化罐"
 }
