@@ -1,6 +1,5 @@
-package navy_master.hachimi.magic.datagen;
+package navy_master.hachimi.magic.utils;
 
-import navy_master.hachimi.magic.HachimiMagic;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.data.event.GatherDataEvent;

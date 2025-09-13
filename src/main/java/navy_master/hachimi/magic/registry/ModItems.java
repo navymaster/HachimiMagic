@@ -2,6 +2,7 @@ package navy_master.hachimi.magic.registry;
 
 import navy_master.hachimi.magic.HachimiMagic;
 import navy_master.hachimi.magic.Item.WalkmanBase;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.RecordItem;
@@ -70,6 +71,9 @@ public class ModItems {
             () -> new Item(new Item.Properties().rarity(Rarity.EPIC))
     );
 
+    // 添加混合罐物品
+    public static final RegistryObject<Item> MIXING_TANK = ITEMS.register("mixing_tank",
+            () -> new BlockItem(ModBlocks.MIXING_TANK.get(), new Item.Properties()));
 
     public static final List<RegistryObject<Item>> TAB_ITEMS = List.of(
             MUSIC_DISC_Hachimi_Legacy,
@@ -77,6 +81,7 @@ public class ModItems {
             MANBO_LEVEL_1,
             JIMI_LEVEL_1,
             WALKMAN,
+            MIXING_TANK,
             ModFluids.HA_EMULSION.bucket(),
             ModFluids.JIMI_EMULSION.bucket(),
             ModFluids.MANBO_EMULSION.bucket(),

@@ -1,6 +1,7 @@
-package navy_master.hachimi.magic.walkman;
+package navy_master.hachimi.magic.menu;
 
 import navy_master.hachimi.magic.registry.ModMenuType;
+import navy_master.hachimi.magic.walkman.WalkmanInventory;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
@@ -40,16 +41,21 @@ public class WalkmanMenu extends AbstractContainerMenu {
             });
         }
 
-        // 添加玩家物品栏（3行9列）
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 9; j++) {
-                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 51 + i * 18));
+        addPlayerInventory(playerInventory);
+        addPlayerHotbar(playerInventory);
+    }
+
+    private void addPlayerInventory(Inventory playerInventory) {
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 9; col++) {
+                this.addSlot(new Slot(playerInventory, col + row * 9 + 9, 8 + col * 18, 84 + row * 18));
             }
         }
+    }
 
-        // 添加玩家快捷栏
-        for (int i = 0; i < 9; i++) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 109));
+    private void addPlayerHotbar(Inventory playerInventory) {
+        for (int col = 0; col < 9; col++) {
+            this.addSlot(new Slot(playerInventory, col, 8 + col * 18, 142));
         }
     }
 

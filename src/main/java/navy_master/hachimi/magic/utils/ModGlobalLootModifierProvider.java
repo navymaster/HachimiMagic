@@ -1,4 +1,4 @@
-package navy_master.hachimi.magic.datagen;
+package navy_master.hachimi.magic.utils;
 
 import navy_master.hachimi.magic.modifier.FishLootModifier;
 import navy_master.hachimi.magic.registry.ModItems;

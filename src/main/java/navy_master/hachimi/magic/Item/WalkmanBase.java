@@ -2,7 +2,7 @@ package navy_master.hachimi.magic.Item;
 
 import navy_master.hachimi.magic.HachimiMagic;
 import navy_master.hachimi.magic.registry.ModItems;
-import navy_master.hachimi.magic.walkman.WalkmanMenu;
+import navy_master.hachimi.magic.menu.WalkmanMenu;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -21,9 +21,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.RecordItem;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.network.NetworkHooks;
-import org.jetbrains.annotations.NotNull;
 
 public class WalkmanBase extends Item {
     // 纹理标识，准备两个纹理，"walkman_empty" 和 "walkman_loaded"，分别显示有无唱片时的随身听

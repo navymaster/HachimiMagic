@@ -15,7 +15,8 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, HachimiMagic.MODID);
 
-
+    public static final RegistryObject<Block> MIXING_TANK = BLOCKS.register("mixing_tank",
+            () -> new MixingTankBlock(BlockBehaviour.Properties.of()));
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

@@ -1,8 +1,8 @@
-package navy_master.hachimi.magic.walkman;
+package navy_master.hachimi.magic.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import navy_master.hachimi.magic.HachimiMagic;
+import navy_master.hachimi.magic.menu.WalkmanMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;

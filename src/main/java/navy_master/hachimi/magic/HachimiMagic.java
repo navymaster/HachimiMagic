@@ -23,6 +23,7 @@ public class HachimiMagic {
         ModBlocks.register(modEventBus);
         ModFluidTypes.register(modEventBus);
         ModFluids.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         LootModifier.register(modEventBus);
     }
