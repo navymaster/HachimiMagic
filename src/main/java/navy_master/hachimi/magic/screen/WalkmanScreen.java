@@ -12,7 +12,9 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class WalkmanScreen extends AbstractContainerScreen<WalkmanMenu> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(HachimiMagic.MODID, "textures/gui/walkman.png");
-
+    //TODO 界面美术资源占位
+    private static final ResourceLocation HOPPER_TEXTURE =
+            new ResourceLocation("textures/gui/container/hopper.png");
     public WalkmanScreen(WalkmanMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
         this.imageWidth = 176;
@@ -24,13 +26,13 @@ public class WalkmanScreen extends AbstractContainerScreen<WalkmanMenu> {
     protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, TEXTURE);
+        RenderSystem.setShaderTexture(0, HOPPER_TEXTURE);
 
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
 
         // 使用 GuiGraphics 绘制纹理
-        guiGraphics.blit(TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
+        guiGraphics.blit(HOPPER_TEXTURE, x, y, 0, 0, this.imageWidth, this.imageHeight);
     }
 
     @Override
