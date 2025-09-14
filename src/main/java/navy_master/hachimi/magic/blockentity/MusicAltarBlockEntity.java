@@ -40,10 +40,10 @@ public class MusicAltarBlockEntity extends BlockEntity implements WorldlyContain
             ModFluids.MUSIC_EMULSION.source().getId(),3
             );
     private final BlockPos[] corners = {
-            this.worldPosition.offset(-2, 0, -2),
-            this.worldPosition.offset(-2, 0, 2),
-            this.worldPosition.offset(2, 0, -2),
-            this.worldPosition.offset(2, 0, 2)
+            this.worldPosition.offset(0, 2, -3),
+            this.worldPosition.offset(-3, 2, 0),
+            this.worldPosition.offset(0, 2, 3),
+            this.worldPosition.offset(3, 2, 0)
     };
 
     public MusicAltarBlockEntity(BlockPos pos, BlockState state) {
