@@ -8,7 +8,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -20,7 +19,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
@@ -29,7 +27,6 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -38,7 +35,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 import java.util.Set;
 
-public class MixingTankBlockEntity extends BlockEntity implements MenuProvider {
+public class MixingTankBlockEntity extends BaseTankBlockEntity implements MenuProvider {
     public static Set<Item> surfactant=Set.of(
             Items.HONEY_BOTTLE,
             Items.SLIME_BALL,
@@ -62,21 +59,10 @@ public class MixingTankBlockEntity extends BlockEntity implements MenuProvider {
         }
     };
 
-    private final FluidTank fluidTank = new FluidTank(10000) {
-        @Override
-        protected void onContentsChanged() {
-            setChanged();
-            if (level != null && !level.isClientSide()) {
-                level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
-            }
-        }
-    };
-
     private int progress = 0;
-    private int maxProgress = 100; // 100 ticks (5 seconds)
+    private final int maxProgress = 100; // 100 ticks (5 seconds)
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
-    private LazyOptional<IFluidHandler> lazyFluidHandler = LazyOptional.empty();
 
     public MixingTankBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.MIXING_TANK.get(), pos, state);
@@ -87,11 +73,6 @@ public class MixingTankBlockEntity extends BlockEntity implements MenuProvider {
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return lazyItemHandler.cast();
         }
-
-        if (cap == ForgeCapabilities.FLUID_HANDLER) {
-            return lazyFluidHandler.cast();
-        }
-
         return super.getCapability(cap, side);
     }
 
@@ -99,20 +80,17 @@ public class MixingTankBlockEntity extends BlockEntity implements MenuProvider {
     public void onLoad() {
         super.onLoad();
         lazyItemHandler = LazyOptional.of(() -> itemHandler);
-        lazyFluidHandler = LazyOptional.of(() -> fluidTank);
-    }
+   }
 
     @Override
     public void invalidateCaps() {
         super.invalidateCaps();
         lazyItemHandler.invalidate();
-        lazyFluidHandler.invalidate();
     }
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
-        tag.put("fluidTank", fluidTank.writeToNBT(new CompoundTag()));
         tag.putInt("progress", progress);
         super.saveAdditional(tag);
     }
@@ -121,7 +99,6 @@ public class MixingTankBlockEntity extends BlockEntity implements MenuProvider {
     public void load(CompoundTag tag) {
         super.load(tag);
         itemHandler.deserializeNBT(tag.getCompound("inventory"));
-        fluidTank.readFromNBT(tag.getCompound("fluidTank"));
         progress = tag.getInt("progress");
     }
 
@@ -189,16 +166,12 @@ public class MixingTankBlockEntity extends BlockEntity implements MenuProvider {
         return maxProgress;
     }
 
-    public FluidTank getFluidTank() {
-        return fluidTank;
-    }
-
     public ItemStackHandler getItemHandler() {
         return itemHandler;
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.translatable("container.hachimimagic.mixing_tank");
     }
 
@@ -206,25 +179,5 @@ public class MixingTankBlockEntity extends BlockEntity implements MenuProvider {
     @Override
     public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
         return new MixingTankMenu(containerId, playerInventory, this);
-    }
-    public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
-    }
-    @Override
-    public CompoundTag getUpdateTag() {
-        return saveWithoutMetadata();
-    }
-
-    @Override
-    public void handleUpdateTag(CompoundTag tag) {
-        load(tag);
-    }
-
-    // 当流体变化时通知客户端
-    public void setChanged() {
-        super.setChanged();
-        if (level != null && !level.isClientSide) {
-            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
-        }
     }
 }

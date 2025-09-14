@@ -4,7 +4,6 @@ package navy_master.hachimi.magic.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import navy_master.hachimi.magic.HachimiMagic;
 import navy_master.hachimi.magic.blockentity.BaseTankBlockEntity;
-import navy_master.hachimi.magic.blockentity.MixingTankBlockEntity;
 import navy_master.hachimi.magic.menu.BaseTankMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
@@ -13,10 +12,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.fluids.FluidStack;
 
-public class MixingTankScreen extends BaseTankScreen {
+public class MusicTankScreen extends BaseTankScreen {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(HachimiMagic.MODID, "textures/gui/mixing_tank_gui.png");
-    public MixingTankScreen(BaseTankMenu menu, Inventory inventory, Component component) {
+    public MusicTankScreen(BaseTankMenu menu, Inventory inventory, Component component) {
         super(menu, inventory, component);
     }
 
@@ -36,22 +35,8 @@ public class MixingTankScreen extends BaseTankScreen {
         // 绘制背景
         guiGraphics.blit(CHEST_TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
 
-        // 绘制进度条
-        renderProgressArrow(guiGraphics, x, y);
-
         // 绘制流体槽
         renderFluidTank(guiGraphics, x-imageWidth/2, y-imageHeight/2);
-    }
-
-    private void renderProgressArrow(GuiGraphics guiGraphics, int x, int y) {
-        // 通过菜单获取方块实体
-        MixingTankBlockEntity blockEntity = (MixingTankBlockEntity) menu.getBlockEntity();
-        if (blockEntity != null && blockEntity.getProgress() > 0) {
-            int progress = blockEntity.getProgress();
-            int maxProgress = blockEntity.getMaxProgress();
-            int progressWidth = (int) (24 * ((float) progress / maxProgress));
-            guiGraphics.blit(CHEST_TEXTURE, x + 79, y + 34, 176, 0, progressWidth, 17);
-        }
     }
 
     @Override

@@ -4,6 +4,7 @@ import navy_master.hachimi.magic.blockentity.MusicAltarBlockEntity;
 import navy_master.hachimi.magic.menu.MusicAltarMenu;
 import navy_master.hachimi.magic.HachimiMagic;
 import navy_master.hachimi.magic.menu.WalkmanMenu;
+import navy_master.hachimi.magic.menu.MusicTankMenu;
 import navy_master.hachimi.magic.menu.MixingTankMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
@@ -45,6 +46,8 @@ public class ModMenuType {
     public static final RegistryObject<MenuType<MixingTankMenu>> MIXING_TANK =
             MENUS.register("mixing_tank_menu", () -> IForgeMenuType.create(MixingTankMenu::new));
 
+    public static final RegistryObject<MenuType<MusicTankMenu>> MUSIC_TANK =
+            MENUS.register("music_tank_menu", () -> IForgeMenuType.create(MusicTankMenu::new));
     public static void register(IEventBus eventBus) {
         MENUS.register(eventBus);
     }

@@ -75,13 +75,20 @@ public class ModItems {
     public static final RegistryObject<Item> MIXING_TANK = ITEMS.register("mixing_tank",
             () -> new BlockItem(ModBlocks.MIXING_TANK.get(), new Item.Properties()));
 
+    public static final RegistryObject<Item> NORMAL_TANK = ITEMS.register("normal_tank",
+            () -> new BlockItem(ModBlocks.NORMAL_TANK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> MUSIC_TANK = ITEMS.register("music_tank",
+            () -> new BlockItem(ModBlocks.MUSIC_TANK.get(), new Item.Properties()));
+
     public static final List<RegistryObject<Item>> TAB_ITEMS = List.of(
             MUSIC_DISC_Hachimi_Legacy,
             HA_LEVEL_1,
             MANBO_LEVEL_1,
             JIMI_LEVEL_1,
             WALKMAN,
+            NORMAL_TANK,
             MIXING_TANK,
+            MUSIC_TANK,
             ModFluids.HA_EMULSION.bucket(),
             ModFluids.JIMI_EMULSION.bucket(),
             ModFluids.MANBO_EMULSION.bucket(),

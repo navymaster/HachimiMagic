@@ -72,7 +72,7 @@ public class MusicAltarBlockEntity extends BlockEntity implements WorldlyContain
             if (level != null) {
                 be = level.getBlockEntity(corner);
             }
-            if (be instanceof MixingTankBlockEntity tank) {
+            if (be instanceof BaseTankBlockEntity tank) {
                 FluidStack fluid=tank.getFluidTank().getFluid();
                 ResourceLocation fluidID=ForgeRegistries.FLUIDS.getKey(fluid.getFluid());
                 if (typecode.containsKey(fluidID)){
