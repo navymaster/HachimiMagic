@@ -30,7 +30,7 @@ public class FluidRegistryHelper {
     }
 
     public static FluidRegistration registerFluid(String name, int tintColor) {
-        ResourceLocation stillTexture=new ResourceLocation(HachimiMagic.MODID, "block/"+name+"_still");
+        ResourceLocation stillTexture = new ResourceLocation(HachimiMagic.MODID, "block/" + name + "_still");
         ResourceLocation flowingTexture=new ResourceLocation(HachimiMagic.MODID, "block/"+name+"_flowing");
         // 1. 注册流体类型
         RegistryObject<FluidType> type = ModFluidTypes.FLUID_TYPES.register(name + "_type",

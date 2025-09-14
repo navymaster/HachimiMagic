@@ -26,7 +26,6 @@ public class MenuClientModEvents {
 
             // 注册祭坛的界面
             MenuScreens.register(ModMenuType.MUSIC_ALTAR.get(), MusicMultiblockScreen::new);
-
         });
     }
 }

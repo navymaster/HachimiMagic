@@ -11,5 +11,7 @@
   "item.hachimimagic.jimi_emulsion_bucket":"基米元素桶",
   "item.hachimimagic.manbo_emulsion_bucket":"曼波元素桶",
   "item.hachimimagic.music_emulsion_bucket":"乐元素桶",
-  "block.hachimimagic.mixing_tank": "混合罐"
+  "block.hachimimagic.mixing_tank": "混合罐",
+  "container.hachimimagic.mixing_tank":"混合罐",
+  "container.hachimimagic.music_multiblock": "哈基米祭坛"
 }

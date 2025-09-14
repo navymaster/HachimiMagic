@@ -3,14 +3,12 @@ package navy_master.hachimi.magic.blockentity;
 import navy_master.hachimi.magic.menu.MusicAltarMenu;
 import navy_master.hachimi.magic.music_altar.MultiblockStructureChecker;
 import navy_master.hachimi.magic.registry.ModBlockEntities;
+import navy_master.hachimi.magic.registry.ModFluids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.WorldlyContainer;
@@ -25,19 +23,28 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 public class MusicAltarBlockEntity extends BlockEntity implements WorldlyContainer, CraftingContainer,MenuProvider{
-    private Set<BlockPos> tankPositions = new HashSet<>();
     private final NonNullList<ItemStack> items = NonNullList.withSize(10, ItemStack.EMPTY);
-    private final int[] tankLevels = new int[4];
-    private final boolean[] tankActive = new boolean[4];
-    private ItemStack record = ItemStack.EMPTY;
+
+    public static final Map<ResourceLocation,Integer> typecode= Map.of(
+            ModFluids.HA_EMULSION.source().getId(),0,
+            ModFluids.JIMI_EMULSION.source().getId(),1,
+            ModFluids.MANBO_EMULSION.source().getId(),2,
+            ModFluids.MUSIC_EMULSION.source().getId(),3
+            );
+    private final BlockPos[] corners = {
+            this.worldPosition.offset(-2, 0, -2),
+            this.worldPosition.offset(-2, 0, 2),
+            this.worldPosition.offset(2, 0, -2),
+            this.worldPosition.offset(2, 0, 2)
+    };
 
     public MusicAltarBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.MUSIC_ALTAR.get(), pos, state);
@@ -45,100 +52,12 @@ public class MusicAltarBlockEntity extends BlockEntity implements WorldlyContain
 
     public void initializeStructure() {
         setChanged();
-        findTankPositions();
     }
-
-    private void findTankPositions() {
-        BlockPos[] corners = {
-                this.worldPosition.offset(-2, 0, -2),
-                this.worldPosition.offset(-2, 0, 2),
-                this.worldPosition.offset(2, 0, -2),
-                this.worldPosition.offset(2, 0, 2)
-        };
-
-        for (BlockPos corner : corners) {
-            if (level.getBlockEntity(corner) instanceof MixingTankBlockEntity) {
-                tankPositions.add(corner);
-            }
-        }
-    }
-
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, MusicAltarBlockEntity be) {
             be.validateStructure();
-            be.monitorTanks();
     }
 
-        //TODO  检查配方
-        /*
-        Optional<MusicMultiblockRecipe> recipe = level.getRecipeManager()
-                .getRecipeFor(ModRecipeTypes.MUSIC_MULTIBLOCK, be, level);
-
-        if (recipe.isPresent()) {
-            // 检查是否满足合成条件
-            if (recipe.get().matches(be, level)) {
-                // 执行合成
-                be.craftItem(recipe.get());
-            }
-        }
-*/
-
-
-    /*
-    private void craftItem(MusicMultiblockRecipe recipe) {
-        // 消耗物品
-        for (int i = 0; i < 9; i++) {
-            items.get(i).shrink(1);
-        }
-
-        // 消耗流体
-        for (int i = 0; i < 4; i++) {
-            if (tankActive[i]) {
-                BlockPos tankPos = getTankPosition(worldPosition, i);
-                BlockEntity tank = level.getBlockEntity(tankPos);
-                if (tank instanceof FluidTankBlockEntity fluidTank) {
-                    fluidTank.drain(recipe.getConsumeFluidAmount(i), FluidAction.EXECUTE);
-                }
-            }
-        }
-
-        // 设置结果物品
-        items.set(9, recipe.getResultItem().copy());
-
-    }
-    */
-
-
-
-    public int getTankLevel(int tankIndex) {
-        return tankLevels[tankIndex];
-    }
-
-    public boolean isTankActive(int tankIndex) {
-        return tankActive[tankIndex];
-    }
-    public void setTankActive(int tankIndex,boolean active) {
-        tankActive[tankIndex] = active;
-        setChanged();
-    }
-
-
-
-    public void toggleTankActive(int tankIndex) {
-        tankActive[tankIndex] = !tankActive[tankIndex];
-        setChanged();
-    }
-
-    private static BlockPos getTankPosition(BlockPos center, int direction) {
-        // 根据方向获取储罐位置（北、东、南、西）
-        return switch (direction) {
-            case 0 -> center.offset(-2, -1, -2); // 西北
-            case 1 -> center.offset(2, -1, -2);  // 东北
-            case 2 -> center.offset(2, -1, 2);   // 东南
-            case 3 -> center.offset(-2, -1, 2);  // 西南
-            default -> center;
-        };
-    }
 
     private void validateStructure() {
         if (!MultiblockStructureChecker.isStructureComplete(level, worldPosition)) {
@@ -146,15 +65,24 @@ public class MusicAltarBlockEntity extends BlockEntity implements WorldlyContain
         }
     }
 
-    private void monitorTanks() {
-        for (BlockPos tankPos : tankPositions) {
-            BlockEntity be = level.getBlockEntity(tankPos);
+    public int[] monitorTanks() {
+        int tanklevel[]=new int[4];
+        for (BlockPos corner : corners) {
+            BlockEntity be = null;
+            if (level != null) {
+                be = level.getBlockEntity(corner);
+            }
             if (be instanceof MixingTankBlockEntity tank) {
                 FluidStack fluid=tank.getFluidTank().getFluid();
-                // TODO tankLevels[tankPositions]=fluid.getAmount();
+                ResourceLocation fluidID=ForgeRegistries.FLUIDS.getKey(fluid.getFluid());
+                if (typecode.containsKey(fluidID)){
+                    tanklevel[typecode.get(fluidID)]=fluid.getAmount();
+                }
             }
         }
+        return tanklevel;
     }
+
 
     // 添加恢复为唱片机的方法
     public void revertToJukebox() {
@@ -163,29 +91,6 @@ public class MusicAltarBlockEntity extends BlockEntity implements WorldlyContain
         // 将方块替换为唱片机
         level.setBlockAndUpdate(worldPosition, Blocks.JUKEBOX.defaultBlockState());
     }
-
-    @Override
-    protected void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
-        if (!record.isEmpty()) {
-            tag.put("Record", record.save(new CompoundTag()));
-        }
-    }
-
-    @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
-        if (tag.contains("Record")) {
-            record = ItemStack.of(tag.getCompound("Record"));
-        }
-    }
-
-
-    @Override
-    public Packet<ClientGamePacketListener> getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
-    }
-
 
     // 实现WorldlyContainer接口
     @Override

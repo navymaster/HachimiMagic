@@ -31,8 +31,5 @@ public class HachimiMagic {
 
         // 注册事件处理器
         MinecraftForge.EVENT_BUS.register(new MultiblockActiveEventHandler());
-
-        // 注册网络包
-        PacketHandler.register();
     }
 }

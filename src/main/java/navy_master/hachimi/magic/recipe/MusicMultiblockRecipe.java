@@ -50,12 +50,12 @@ public class MusicMultiblockRecipe implements Recipe<Container> {
         // 检查流体条件
         if (container instanceof MusicAltarBlockEntity be) {
             for (int i = 0; i < 4; i++) {
-                if (requiredActiveTanks[i] && !be.isTankActive(i)) {
+                if (requiredActiveTanks[i] ) {
                     return false;
                 }
-                if (be.getTankLevel(i) < minFluidLevels[i]) {
+                /*if (be.getTankLevel(i) < minFluidLevels[i]) {
                     return false;
-                }
+                }*/
             }
         }
 

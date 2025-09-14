@@ -1,16 +1,24 @@
 package navy_master.hachimi.magic.menu;
 
+import com.ibm.icu.impl.Pair;
 import navy_master.hachimi.magic.blockentity.MusicAltarBlockEntity;
 import navy_master.hachimi.magic.registry.ModMenuType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.*;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ResultSlot;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MusicAltarMenu extends AbstractContainerMenu {
     private final MusicAltarBlockEntity blockEntity;
     private final Player player;
-    private final ContainerData data;
+    private final List<Pair<ResourceLocation, Integer>> syncedFluids = new ArrayList<>();
 
     public MusicAltarMenu(int containerId, Inventory playerInventory, MusicAltarBlockEntity blockEntity) {
         super(ModMenuType.MUSIC_ALTAR.get(), containerId);
@@ -24,7 +32,6 @@ public class MusicAltarMenu extends AbstractContainerMenu {
             }
         }
 
-        // 正确使用 ResultSlot（6个参数）
         this.addSlot(new ResultSlot(
                 playerInventory.player, // Player
                 blockEntity, // CraftingContainer
@@ -36,23 +43,6 @@ public class MusicAltarMenu extends AbstractContainerMenu {
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
-
-        // 添加数据同步（流体量和激活状态）
-        this.data = new SimpleContainerData(8) {
-            @Override
-            public int get(int index) {
-                if (index < 4) return blockEntity.getTankLevel(index);
-                return blockEntity.isTankActive(index - 4) ? 1 : 0;
-            }
-
-            @Override
-            public void set(int index, int value) {
-                if (index >= 4) {
-                    blockEntity.setTankActive(index - 4, value == 1);
-                }
-            }
-        };
-        this.addDataSlots(data);
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
@@ -68,19 +58,6 @@ public class MusicAltarMenu extends AbstractContainerMenu {
             this.addSlot(new Slot(playerInventory, col, 8 + col * 18, 142));
         }
     }
-
-    public int getTankLevel(int tankIndex) {
-        return data.get(tankIndex);
-    }
-
-    public boolean isTankActive(int tankIndex) {
-        return data.get(tankIndex + 4) == 1;
-    }
-
-    public MusicAltarBlockEntity getBlockEntity() {
-        return blockEntity;
-    }
-
     @Override
     public ItemStack quickMoveStack(Player player, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
@@ -124,5 +101,9 @@ public class MusicAltarMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return blockEntity.stillValid(player);
+    }
+
+    public BlockPos getPos() {
+        return blockEntity.getBlockPos();
     }
 }
