@@ -5,6 +5,10 @@ import navy_master.hachimi.magic.blockentity.MixingTankBlockEntity;
 import navy_master.hachimi.magic.blockentity.MusicAltarBlockEntity;
 import navy_master.hachimi.magic.blockentity.MusicTankEntity;
 import navy_master.hachimi.magic.blockentity.NormalTankEntity;
+import navy_master.hachimi.magic.blocks.MixingTankBlock;
+import navy_master.hachimi.magic.blocks.MusicTank;
+import navy_master.hachimi.magic.blocks.NormalTank;
+import navy_master.hachimi.magic.utils.EntityBlockRegHelper;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,16 +23,23 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("music_altar", () ->
                     BlockEntityType.Builder.of(MusicAltarBlockEntity::new, ModBlocks.MUSIC_ALTAR_CORE.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<MixingTankBlockEntity>> MIXING_TANK =
-            BLOCK_ENTITIES.register("mixing_tank", () ->
-                    BlockEntityType.Builder.of(MixingTankBlockEntity::new, ModBlocks.MIXING_TANK.get()).build(null));
-    public static final RegistryObject<BlockEntityType<NormalTankEntity>> NORMAL_TANK =
-            BLOCK_ENTITIES.register("normal_tank", () ->
-                    BlockEntityType.Builder.of(NormalTankEntity::new, ModBlocks.NORMAL_TANK.get()).build(null));
+    public static final EntityBlockRegHelper.EntityBlockRegistration NORMAL_TANK =EntityBlockRegHelper.registerBlockEntities(
+            "normal_tank",
+            NormalTankEntity.class,
+            NormalTank.class
+    );
 
-    public static final RegistryObject<BlockEntityType<MusicTankEntity>> MUSIC_TANK =
-            BLOCK_ENTITIES.register("music_tank", () ->
-                    BlockEntityType.Builder.of(MusicTankEntity::new, ModBlocks.MUSIC_TANK.get()).build(null));
+    public static final EntityBlockRegHelper.EntityBlockRegistration MIXING_TANK =EntityBlockRegHelper.registerBlockEntities(
+            "mixing_tank",
+            MixingTankBlockEntity.class,
+            MixingTankBlock.class
+    );
+
+    public static final EntityBlockRegHelper.EntityBlockRegistration MUSIC_TANK =EntityBlockRegHelper.registerBlockEntities(
+            "music_tank",
+            MusicTankEntity.class,
+            MusicTank.class
+    );
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

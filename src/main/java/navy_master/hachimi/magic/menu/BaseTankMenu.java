@@ -8,14 +8,20 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 
 public abstract class BaseTankMenu extends AbstractContainerMenu {
     public final BaseTankBlockEntity blockEntity;
-    protected BaseTankMenu(@Nullable MenuType<?> p_38851_, int p_38852_, BaseTankBlockEntity blockEntity) {
-        super(p_38851_,p_38852_);
-        this.blockEntity = blockEntity;
+    protected final Level level;
+    public BaseTankMenu(@Nullable MenuType<?> p_38851_,int containerId, Inventory inv, BaseTankBlockEntity entity) {
+        super(p_38851_, containerId);
+        this.blockEntity=entity;
+        this.level = inv.player.level();
+
+        addPlayerInventory(inv);
+        addPlayerHotbar(inv);
     }
 
     protected void addPlayerInventory(Inventory playerInventory) {

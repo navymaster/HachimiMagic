@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
@@ -24,7 +25,7 @@ public class MusicTankEntity extends BaseTankBlockEntity implements MenuProvider
     private static final Fluid MUSIC_FLUID = ModFluids.MUSIC_EMULSION.source().get();
 
     public MusicTankEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.NORMAL_TANK.get(), pos, state);
+        super((BlockEntityType<?>) ModBlockEntities.MUSIC_TANK.block_entity().get(), pos, state);
     }
 
     @Override

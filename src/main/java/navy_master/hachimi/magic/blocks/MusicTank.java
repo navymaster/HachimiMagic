@@ -23,7 +23,9 @@ public class MusicTank extends TankBase {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, ModBlockEntities.MUSIC_TANK.get(),
+
+        BlockEntityType<MusicTankEntity> typeB= (BlockEntityType<MusicTankEntity>) ModBlockEntities.MUSIC_TANK.block_entity().get();
+        return createTickerHelper(type, typeB,
                 MusicTankEntity::tick);
     }
 

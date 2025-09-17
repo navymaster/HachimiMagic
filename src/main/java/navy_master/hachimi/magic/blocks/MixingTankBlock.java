@@ -32,10 +32,10 @@ public class MixingTankBlock extends TankBase {
         return new MixingTankBlockEntity(pos, state);
     }
 
-    @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, ModBlockEntities.MIXING_TANK.get(),
+    public <T extends BlockEntity> BlockEntityTicker getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        BlockEntityType<MixingTankBlockEntity> typeB= (BlockEntityType<MixingTankBlockEntity>) ModBlockEntities.MIXING_TANK.block_entity().get();
+        return createTickerHelper(type, typeB,
                 MixingTankBlockEntity::tick);
     }
 }
