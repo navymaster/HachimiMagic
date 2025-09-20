@@ -9,6 +9,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -77,6 +78,9 @@ public class WalkmanBase extends Item {
                     // 播放唱片音乐
                     level.playSound(null, player.getX(), player.getY(), player.getZ(),
                             recordItem.getSound(), SoundSource.RECORDS, 4.0f, 1.0f);
+                }
+                if(recordStack.getItem() instanceof MagicRecord magicRecord){
+                    magicRecord.castMagic((ServerLevel)level,player);
                 }
             }
         }

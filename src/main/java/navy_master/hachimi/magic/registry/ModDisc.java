@@ -16,6 +16,11 @@ public class ModDisc {
             SOUND_EVENTS.register("music_disc.hachimi_legacy",
                     () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("hachimimagic", "music_disc.hachimi_legacy")));
 
+    public static final RegistryObject<SoundEvent> MIDNIGHT_CHIMI =
+            SOUND_EVENTS.register("music_disc.midnight_chimi",
+                    () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("hachimimagic", "music_disc.midnight_chimi")));
+
+
     public static void register(IEventBus eventBus) {
         SOUND_EVENTS.register(eventBus);
     }

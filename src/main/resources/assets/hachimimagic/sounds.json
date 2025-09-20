@@ -16,5 +16,14 @@
         "stream": true
       }
     ]
+  },
+  "music_disc.midnight_chimi": {
+    "category" : "record",
+    "sounds": [
+      {
+        "name": "hachimimagic:music_disc/midnight_chimi",
+        "stream": true
+      }
+    ]
   }
 }

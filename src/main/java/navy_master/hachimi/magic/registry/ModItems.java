@@ -1,7 +1,11 @@
 package navy_master.hachimi.magic.registry;
 
 import navy_master.hachimi.magic.HachimiMagic;
+import navy_master.hachimi.magic.Item.MagicRecord;
 import navy_master.hachimi.magic.Item.WalkmanBase;
+import navy_master.hachimi.magic.spells.MidnightCitySustainedSpellInstance;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.RecordItem;
@@ -23,8 +27,17 @@ public class ModItems {
 
 
     public static final RegistryObject<Item> MUSIC_DISC_Hachimi_Legacy = ITEMS.register("hachimi_legacy_music_disc",
-            () -> new RecordItem(15,() -> ModDisc.DISC_SOUND_Hachimi_Legacy.get(),
+            () -> new RecordItem(15, ModDisc.DISC_SOUND_Hachimi_Legacy,
                     new Item.Properties().stacksTo(1).rarity(Rarity.EPIC), 600));
+
+    public static final RegistryObject<Item> MIDNIGHT_CHIMI = ITEMS.register("midnight_chimi",
+            () -> new MagicRecord(ModDisc.MIDNIGHT_CHIMI,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.EPIC), 200,200) {
+                @Override
+                public void castMagic(ServerLevel level, Player player) {
+                    new MidnightCitySustainedSpellInstance(player,level).start();
+                }
+            });
 
 
 
@@ -72,6 +85,7 @@ public class ModItems {
 
     public static final List<RegistryObject<Item>> TAB_ITEMS = List.of(
             MUSIC_DISC_Hachimi_Legacy,
+            MIDNIGHT_CHIMI,
             HA_LEVEL_1,
             MANBO_LEVEL_1,
             JIMI_LEVEL_1,
