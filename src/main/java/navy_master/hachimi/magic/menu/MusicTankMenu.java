@@ -1,7 +1,7 @@
 package navy_master.hachimi.magic.menu;
 
 import navy_master.hachimi.magic.blockentity.MusicTankEntity;
-import navy_master.hachimi.magic.registry.ModBlockEntities;
+import navy_master.hachimi.magic.registry.ModBlocks;
 import navy_master.hachimi.magic.registry.ModMenuType;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -19,6 +19,6 @@ public class MusicTankMenu extends BaseTankMenu{
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, (Block) ModBlockEntities.MUSIC_TANK.block().get());
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, (Block) ModBlocks.MUSIC_TANK.block().get());
     }
 }

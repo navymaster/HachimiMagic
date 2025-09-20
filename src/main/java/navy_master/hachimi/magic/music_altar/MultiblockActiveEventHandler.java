@@ -53,7 +53,7 @@ public class MultiblockActiveEventHandler {
             return (MusicAltarBlockEntity) be;
         }
 
-        level.setBlock(pos, ModBlocks.MUSIC_ALTAR_CORE.get().defaultBlockState(), Block.UPDATE_ALL);
+        level.setBlock(pos, ((Block)ModBlocks.MUSIC_ALTAR.block().get()).defaultBlockState(), Block.UPDATE_ALL);
         return (MusicAltarBlockEntity) level.getBlockEntity(pos);
     }
 

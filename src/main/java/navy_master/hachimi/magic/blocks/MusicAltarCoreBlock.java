@@ -1,7 +1,7 @@
 package navy_master.hachimi.magic.blocks;
 
 import navy_master.hachimi.magic.blockentity.MusicAltarBlockEntity;
-import navy_master.hachimi.magic.registry.ModBlockEntities;
+import navy_master.hachimi.magic.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -48,7 +48,9 @@ public class MusicAltarCoreBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return level.isClientSide ? null : createTickerHelper(type, ModBlockEntities.MUSIC_ALTAR.get(), MusicAltarBlockEntity::serverTick);
+        BlockEntityType<MusicAltarBlockEntity> typeB= (BlockEntityType<MusicAltarBlockEntity>) ModBlocks.MUSIC_ALTAR.block_entity().get();
+
+        return level.isClientSide ? null : createTickerHelper(type, typeB, MusicAltarBlockEntity::serverTick);
     }
     @Override
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {

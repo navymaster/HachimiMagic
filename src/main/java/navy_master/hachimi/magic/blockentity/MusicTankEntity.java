@@ -1,7 +1,7 @@
 package navy_master.hachimi.magic.blockentity;
 
 import navy_master.hachimi.magic.menu.MusicTankMenu;
-import navy_master.hachimi.magic.registry.ModBlockEntities;
+import navy_master.hachimi.magic.registry.ModBlocks;
 import navy_master.hachimi.magic.registry.ModFluids;
 import navy_master.hachimi.magic.utils.MusicDetectionSystem;
 import net.minecraft.core.BlockPos;
@@ -25,7 +25,7 @@ public class MusicTankEntity extends BaseTankBlockEntity implements MenuProvider
     private static final Fluid MUSIC_FLUID = ModFluids.MUSIC_EMULSION.source().get();
 
     public MusicTankEntity(BlockPos pos, BlockState state) {
-        super((BlockEntityType<?>) ModBlockEntities.MUSIC_TANK.block_entity().get(), pos, state);
+        super((BlockEntityType<?>) ModBlocks.MUSIC_TANK.block_entity().get(), pos, state);
     }
 
     @Override

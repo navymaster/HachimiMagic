@@ -1,7 +1,7 @@
 package navy_master.hachimi.magic.blocks;
 
 import navy_master.hachimi.magic.blockentity.MusicTankEntity;
-import navy_master.hachimi.magic.registry.ModBlockEntities;
+import navy_master.hachimi.magic.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -24,7 +24,7 @@ public class MusicTank extends TankBase {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
 
-        BlockEntityType<MusicTankEntity> typeB= (BlockEntityType<MusicTankEntity>) ModBlockEntities.MUSIC_TANK.block_entity().get();
+        BlockEntityType<MusicTankEntity> typeB= (BlockEntityType<MusicTankEntity>) ModBlocks.MUSIC_TANK.block_entity().get();
         return createTickerHelper(type, typeB,
                 MusicTankEntity::tick);
     }

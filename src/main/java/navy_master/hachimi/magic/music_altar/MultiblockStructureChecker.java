@@ -76,7 +76,7 @@ public class MultiblockStructureChecker {
         }, Blocks.JUKEBOX)) ||
                 (checkBlockType(level, new BlockPos[]{
                 center.offset(0, 0, 0),
-        }, ModBlocks.MUSIC_ALTAR_CORE.get()));
+        }, (Block) ModBlocks.MUSIC_ALTAR.block().get()));
     }
 
     private static boolean checkBlockType(Level level, BlockPos[] range, Block type){

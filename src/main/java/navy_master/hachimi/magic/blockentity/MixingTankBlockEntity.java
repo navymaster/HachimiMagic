@@ -1,7 +1,7 @@
 package navy_master.hachimi.magic.blockentity;
 
 import navy_master.hachimi.magic.menu.MixingTankMenu;
-import navy_master.hachimi.magic.registry.ModBlockEntities;
+import navy_master.hachimi.magic.registry.ModBlocks;
 import navy_master.hachimi.magic.registry.ModFluids;
 import navy_master.hachimi.magic.registry.ModItems;
 import net.minecraft.core.BlockPos;
@@ -66,7 +66,7 @@ public class MixingTankBlockEntity extends BaseTankBlockEntity implements MenuPr
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
     public MixingTankBlockEntity(BlockPos pos, BlockState state) {
-        super((BlockEntityType<?>) ModBlockEntities.MIXING_TANK.block_entity().get(), pos, state);
+        super((BlockEntityType<?>) ModBlocks.MIXING_TANK.block_entity().get(), pos, state);
     }
 
     @Override

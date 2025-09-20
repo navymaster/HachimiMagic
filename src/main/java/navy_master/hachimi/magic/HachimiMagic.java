@@ -18,17 +18,14 @@ public class HachimiMagic {
         MinecraftForge.EVENT_BUS.register(this);
         ModDisc.register(modEventBus);
         ModItems.register(modEventBus);
-        ModCreativeTabs.register(modEventBus);
         ModMenuType.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModFluidTypes.register(modEventBus);
         ModFluids.register(modEventBus);
-        ModBlockEntities.register(modEventBus);
-
         LootModifier.register(modEventBus);
         ModRecipeTypes.register(modEventBus);
         ModRecipeSerializers.register(modEventBus);
-
+        ModCreativeTabs.register(modEventBus);
         // 注册事件处理器
         MinecraftForge.EVENT_BUS.register(new MultiblockActiveEventHandler());
     }

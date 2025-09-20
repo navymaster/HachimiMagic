@@ -2,7 +2,7 @@ package navy_master.hachimi.magic.blockentity;
 
 import navy_master.hachimi.magic.menu.MusicAltarMenu;
 import navy_master.hachimi.magic.music_altar.MultiblockStructureChecker;
-import navy_master.hachimi.magic.registry.ModBlockEntities;
+import navy_master.hachimi.magic.registry.ModBlocks;
 import navy_master.hachimi.magic.registry.ModFluids;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -21,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -47,7 +48,7 @@ public class MusicAltarBlockEntity extends BlockEntity implements WorldlyContain
     };
 
     public MusicAltarBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.MUSIC_ALTAR.get(), pos, state);
+        super((BlockEntityType<?>) ModBlocks.MUSIC_ALTAR.block_entity().get(), pos, state);
     }
 
     public void initializeStructure() {

@@ -1,7 +1,7 @@
 package navy_master.hachimi.magic.blocks;
 
 import navy_master.hachimi.magic.blockentity.MixingTankBlockEntity;
-import navy_master.hachimi.magic.registry.ModBlockEntities;
+import navy_master.hachimi.magic.registry.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -34,7 +34,7 @@ public class MixingTankBlock extends TankBase {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        BlockEntityType<MixingTankBlockEntity> typeB= (BlockEntityType<MixingTankBlockEntity>) ModBlockEntities.MIXING_TANK.block_entity().get();
+        BlockEntityType<MixingTankBlockEntity> typeB= (BlockEntityType<MixingTankBlockEntity>) ModBlocks.MIXING_TANK.block_entity().get();
         return createTickerHelper(type, typeB,
                 MixingTankBlockEntity::tick);
     }
